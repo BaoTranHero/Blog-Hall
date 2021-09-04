@@ -10,7 +10,7 @@ $ pip install -r requirements.txt
 ## Description
 This is a simple web app that built with **Python & Flask**
 
-This web app contains 4 difference methods: **CRUD** (more details below)
+This web app contains 4 difference methods: **CRUD** (more detail below)
 ```
 CREATE
 READ
