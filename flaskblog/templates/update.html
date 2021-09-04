@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+<article class="media content-section">
+    <div class="media-body">
+        <form action="/post/update/{{ post_id }}" method="POST">
+            <div class="form-group">
+                <label for="post-title">Title</label>
+                <input type="text" name="post_title" class="form-control" id="post-title" placeholder="Post Title"
+                    maxlength="100" autocomplete="off" autofocus required>
+            </div>
+            <div class="form-group">
+                <label for="post-content">Content</label>
+                <textarea class="form-control" id="post-content" rows="5" name="post_content" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</article>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for post in posts %}
+        <article class="media content-section">
+          <img class="rounded-circle article-img" alt="avatar-image" src="{{ url_for('static', filename='profile_photos/' + post.author.image_file) }}">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="/profile/{{ post.author.id }}">{{ post.author.username }}</a>
+              <small class="text-muted">{{ post.time_stamp.strftime('%m-%m-%Y (Time: %H:%M:%S)') }}</small>
+            </div>
+            <h2 class="article-title">{{ post.title }}</h2>
+            <p class="article-content">{{ post.content }}</p>
+          </div>
+          {% if post.author == current_user %}
+          <div>
+            <a class="btn btn-primary btn-sm m-1" href="/post/update/{{ post.id }}">Update</a>
+            <a class="btn btn-danger btn-sm m-1" href="/post/delete/{{ post.id }}">Delete</a>
+          </div>
+          {% endif %}
+        </article>
+        <!-----------------------Add Comments-------------------------->
+        <form action="/post/{{ post.id }}" method="POST">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Add more comments" name="comment" required>
+          </div>
+        </form>
+        <!--------------------------------Comments--------------------->
+        {% for comment in comments %}
+        <article class="media content-section d-flex flex-column">
+            <div class="media p-2">
+              <img class="rounded-circle article-img" alt="avatar-image" src="{{ url_for('static', filename='profile_photos/' + comment.author.image_file) }}">
+              <div class="media-body">
+                <div class="article-metadata">
+                  <a class="mr-2" href="/profile/{{ comment.user_id }}">{{ comment.author.username }}</a>
+                  <small class="text-muted">{{ comment.time_stamp.strftime('%m-%m-%Y (Time: %H:%M:%S)') }}</small>
+                </div>
+                <p class="article-content">{{ comment.content }}</p>
+              </div>
+            </div>
+            {% if comment.author == current_user %}
+            <div>
+              <a class="btn btn-danger btn-sm m-1" href="/post/delete/comment/{{ comment.id }}">Delete Comment</a>
+            </div>
+            {% endif %}
+        </article>
+        {% endfor %}
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+<article class="media content-section">
+    <div class="media-body">
+        <form action="/register" method="POST">
+            <div class="form-group">
+                <label for="username-register">Username</label>
+                <input type="text" name="username" class="form-control" id="username-register"
+                    placeholder="Enter your username" autofocus maxlength="20">
+            </div>
+            <div class="form-group">
+                <label for="email-register">Email Address</label>
+                <input type="email" name="email" class="form-control" id="email-register" placeholder="Enter your email"
+                    autofocus>
+            </div>
+            <div class="form-group">
+                <label for="password-register">Password</label>
+                <input type="password" name="password" class="form-control" id="password-register"
+                    placeholder="Enter your password" autofocus>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" name="confirmation" class="form-control" id="confirm-password"
+                    placeholder="Confirm your password" autofocus>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+</article>
+<div class="border-top pt-3">
+    <small class="text-muted">
+        Already Have An Account? <a href="{{url_for('login')}}" class="ml-2">Sign In</a>
+    </small>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+<article class="media content-section">
+    <div class="media-body">
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label for="email-login">Email Address</label>
+                <input type="email" name="email" class="form-control" id="email-login" placeholder="Enter your email"
+                    autofocus>
+            </div>
+            <div class="form-group">
+                <label for="password-login">Password</label>
+                <input type="password" name="password" class="form-control" id="password-login"
+                    placeholder="Enter your password" autofocus>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="remember-check" name="remember">
+                <label class="form-check-label" for="remember-check">Remember me</label>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Login</button>
+        </form>
+    </div>
+</article>
+<div class="border-top pt-3">
+    <small class="text-muted">
+        Not Have Account Yet? <a href="{{url_for('register')}}" class="ml-2">Sign Up Now</a>
+    </small>
+</div>
+{% endblock %}
