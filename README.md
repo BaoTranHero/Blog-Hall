@@ -2,6 +2,7 @@
 
 ## Author
 Bao Tran <baotran1109.hnue@gmail.com>
+
 Demo https://bloghall.pythonanywhere.com/
 ## Requirements
 Read and install from the `requirements.txt` by using
