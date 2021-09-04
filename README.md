@@ -18,7 +18,7 @@ UPDATE
 DELETE
 ```
 ### 1. Creat:
-Using `SQLALCHEMY` to create and store objects in two models 
+Using `SQLALCHEMY` to create and store objects in three models 
 
 
 I use **sqlite3** for this project `app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'`
@@ -41,6 +41,14 @@ class Post(db.Model):
     content  = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 ```
+```
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
+    time_stamp = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    content  = db.Column(db.Text, nullable=False)
+```
 Using `backref='author'` in **User** to linked with the **Post** by to `"callback"` when you want to call the User's attribute
 - **Table Schema**
 ```
@@ -62,6 +70,16 @@ CREATE TABLE post (
         user_id INTEGER NOT NULL,
         PRIMARY KEY (id),
         FOREIGN KEY(user_id) REFERENCES user (id)
+);
+CREATE TABLE comment (
+        id INTEGER NOT NULL,
+        user_id INTEGER NOT NULL,
+        post_id INTEGER NOT NULL,
+        time_stamp DATETIME NOT NULL,
+        content TEXT NOT NULL,
+        PRIMARY KEY (id),
+        FOREIGN KEY(user_id) REFERENCES user (id),
+        FOREIGN KEY(post_id) REFERENCES post (id)
 );
 ```
 ### 2. Read:
